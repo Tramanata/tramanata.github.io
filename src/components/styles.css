@@ -7,7 +7,7 @@
     font-size: 1.125rem; /* text-lg */
     margin-top: 4rem; /* mt-16 */
     position: absolute; /* or relative, fixed, etc., based on your needs */
-    top: 25%; /* Change this value to move the button vertically */
-    left: 8%; /* Change this value to move the button horizontally */
+    top: 35%; /* Change this value to move the button vertically */
+    left: 80%; /* Change this value to move the button horizontally */
     transform: translate(-50%, -50%); /* Center the button */
   }

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import React, { useState } from "react";
 import './styles.css'
 
 const Section = (props) => {
@@ -33,9 +34,7 @@ export const Interface = () => {
     <div className="flex flex-col items-center w-screen">
       <AboutSection />
       <SkillsSection />
-      <Section>
-        <h1>Projects</h1>
-      </Section>
+      <ProjectSection />
       <ContactSection />
     </div>
   );
@@ -124,12 +123,20 @@ const skills = [
 
 const SkillsSection = () => {
   const resumeButtonClick = () => {
-    window.open('/resume.pdf', '_blank');
+    const resumePath = "/resume.pdf";
+    window.open(resumePath, '_blank');
   };
+  const LinkedInButton = () => {
+      window.open("https://www.linkedin.com/in/tylerramanata", "_blank");
+    };
+
   return(
     <Section>
         <button className="resume-button" onClick={resumeButtonClick}>
             View Resume
+        </button>
+        <button className="linkedin-button" onClick={LinkedInButton}>
+            View LinkedIn
         </button>
       <motion.div whileInView={"visible"}>
         <h2 className="text-5xl font-bold">Skills</h2>
@@ -174,6 +181,152 @@ const SkillsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+      </motion.div>
+    </Section>
+  );
+};
+const ProjectCard = ({ title, description, image, skills, website }) => (
+  <div className="border border-gray-300 hover:border-indigo-600 p-6 rounded-lg shadow-md bg-white" style={{ height: '725px'}}>
+    {/* Image section */}
+    <div className="mb-4 flex justify-center items-center">
+      <img src={image} alt={title} className="w-80 h-50 rounded-lg"/>
+    </div>
+    {/* Title and description */}
+    <div className="mb-4">
+      <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
+    {/* Skills */}
+    <div className="mb-4">
+      <h4 className="text-lg font-semibold mb-2">Skills Used:</h4>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, index) => (
+          <span
+            key={index}
+            className="bg-gray-200 py-1 px-2 rounded-full text-sm text-gray-700"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+    {/* Button for project link */}
+    {website && (
+      <a
+        href={website}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300"
+      >
+        Visit Website
+      </a>
+    )}
+  </div>
+);
+
+const ProjectSection = () => {
+  const projects = [
+    {
+      title: "Chariot",
+      description:
+        "Chariot is a Full-Stack, Ride Hailing iOS Mobile Application. This application was created to solve a problem in college organizations where drivers had to constantly look at their phones when people needed rides. This application was created using AWS services, React, Node.js, python, and Java.",
+      image: "projects/chariot.png", // Replace with actual image path
+      skills: ["AWS", "React", "Node.js", "Python", "Java"],
+      website: "https://www.chariotapp.com", // Example website link
+    },
+    {
+      title: "My Digital Portfolio",
+      description:
+        "Welcome to my digital portfolio. This project took me countless hours to create using JavaScript (React, Threejs), HTML, and CSS. I also used technologies like blender, framer motion, and maximo.",
+      image: "projects/portfoliopic.png", // Replace with actual image path
+      skills: ["JavaScript", "React", "Threejs", "HTML", "CSS", "Blender", "Framer Motion"],
+      website: "https://www.tylerramanata.com/portfolio", // Example website link
+    },
+    {
+      title: "Rust Blockchain",
+      description:
+        "I am embarking on a new endeavor to develop a blockchain application using Rust programming language. This project aims to leverage Rust's robustness and low-level control to explore decentralized ledger technology. Key objectives include implementing secure transaction protocols, experimenting with consensus algorithms, and exploring the practical applications of smart contracts in decentralized systems.",
+      image: "projects/comingsoon.jpg", // Replace with actual image path
+      skills: ["Rust", "Blockchain", "Smart Contracts", "Consensus Algorithms"],
+      website: "google.com", // Example website link
+    },
+    {
+      title: "Frogzilla",
+      description:
+        "First ever coding project created 10th Grade. Used JavaScript to create a basic targeting game using your cursor.",
+      image: "projects/frogzilla.png", // Replace with actual image path
+      skills: ["JavaScript"],
+      website: "google.com", // Example website link
+    },
+    // Add more projects as needed
+  ];
+
+  const [startIndex, setStartIndex] = useState(0);
+  const maxVisibleCards = 3; // Number of cards visible at a time
+
+  const controls = useAnimation();
+
+  const nextProjects = () => {
+    if (startIndex + maxVisibleCards < projects.length) {
+      setStartIndex(startIndex + 1);
+      controls.start({ x: `-${(startIndex + 1) * (100 / maxVisibleCards)}%` });
+    }
+  };
+
+  const prevProjects = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+      controls.start({ x: `-${(startIndex - 1) * (100 / maxVisibleCards)}%` });
+    }
+  };
+
+  return (
+    <Section>
+      <motion.div
+        className="w-full overflow-hidden relative"
+        whileInView={"visible"}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+        }}
+      >
+        <h2 className="text-5xl font-bold mb-8 text-center">Projects</h2>
+        <div className="flex justify-between items-center mb-4">
+          <button
+            className={`bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 ${startIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={prevProjects}
+            disabled={startIndex === 0}
+          >
+            Prev
+          </button>
+          <button
+            className={`bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 ${startIndex + maxVisibleCards >= projects.length ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={nextProjects}
+            disabled={startIndex + maxVisibleCards >= projects.length}
+          >
+            Next
+          </button>
+        </div>
+        <div className="flex overflow-x-hidden">
+          <motion.div
+            className="flex transition-all ease-in-out duration-500"
+            style={{ x: controls }}
+          >
+            {projects.slice(startIndex, startIndex + maxVisibleCards).map((project, index) => (
+              <div key={index} className="w-full md:w-1/3 px-2">
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  skills={project.skills}
+                  website={project.website}
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </motion.div>
     </Section>

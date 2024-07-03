@@ -42,18 +42,34 @@ export const Interface = () => {
 };
 
 const AboutSection = () => {
+  const text = [
+    "Tyler Ramanata's\nDigital Portfolio"
+  ];
   return (
     <Section>
-      <h1 className="text-6xl font-extrabold leading-snug">
-        Hi, I'm
-        <br />
-        <ReactTypingEffect 
-           text={['Tyler Ramanata']}
-           speed={100}
-           eraseDelay={5000}
-           className="px-1 italic"
-        />
-      </h1>
+      <h1 className="text-5xl italic font-extrabold leading-snug">
+            <ReactTypingEffect
+                text={text}
+                speed={100}
+                eraseSpeed={100}
+                eraseDelay={2000}
+                typingDelay={500}
+                cursor="|"
+                displayTextRenderer={(text, i) => {
+                    return (
+                        <span>
+                            {text.split('\n').map((item, index) => (
+                                <React.Fragment key={index}>
+                                    {item}
+                                    {index < text.split('\n').length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
+                        </span>
+                    );
+                }}
+                
+            />
+        </h1>
       <motion.p
         className="text-lg text-gray-600 mt-4"
         initial={{
@@ -129,8 +145,8 @@ const skills = [
 
 const SkillsSection = () => {
   const resumeButtonClick = () => {
-    // const resumePath = "/resume.pdf";
-    window.open("https://tramanata.github.io/resume.pdf", '_blank');
+    const resumePath = "/resume.pdf";
+    window.open(resumePath, '_blank');
   };
   const LinkedInButton = () => {
       window.open("https://www.linkedin.com/in/tylerramanata", "_blank");

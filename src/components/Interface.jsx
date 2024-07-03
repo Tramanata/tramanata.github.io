@@ -1,5 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import React, { useState } from "react";
+import ReactTypingEffect from 'react-typing-effect';
 import './styles.css'
 
 const Section = (props) => {
@@ -8,7 +9,7 @@ const Section = (props) => {
   return (
     <motion.section
       className={`
-  h-screen w-screen p-8 max-w-screen-2xl mx-auto
+  h-screen w-screen reen p-8 max-w-screen-2xl mx-auto
   flex flex-col items-start justify-center
   `}
       initial={{
@@ -46,7 +47,12 @@ const AboutSection = () => {
       <h1 className="text-6xl font-extrabold leading-snug">
         Hi, I'm
         <br />
-        <span className="bg-white px-1 italic">Tyler Ramanata</span>
+        <ReactTypingEffect 
+           text={['Tyler Ramanata']}
+           speed={100}
+           eraseDelay={5000}
+           className="px-1 italic"
+        />
       </h1>
       <motion.p
         className="text-lg text-gray-600 mt-4"
@@ -123,8 +129,8 @@ const skills = [
 
 const SkillsSection = () => {
   const resumeButtonClick = () => {
-    const resumePath = "/resume.pdf";
-    window.open(resumePath, '_blank');
+    // const resumePath = "/resume.pdf";
+    window.open("https://tramanata.github.io/resume.pdf", '_blank');
   };
   const LinkedInButton = () => {
       window.open("https://www.linkedin.com/in/tylerramanata", "_blank");
@@ -187,41 +193,44 @@ const SkillsSection = () => {
   );
 };
 const ProjectCard = ({ title, description, image, skills, website }) => (
-  <div className="border border-gray-300 hover:border-indigo-600 p-6 rounded-lg shadow-md bg-white" style={{ height: '725px'}}>
-    {/* Image section */}
-    <div className="mb-4 flex justify-center items-center">
-      <img src={image} alt={title} className="w-80 h-50 rounded-lg"/>
-    </div>
-    {/* Title and description */}
-    <div className="mb-4">
-      <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-    {/* Skills */}
-    <div className="mb-4">
-      <h4 className="text-lg font-semibold mb-2">Skills Used:</h4>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill, index) => (
-          <span
-            key={index}
-            className="bg-gray-200 py-1 px-2 rounded-full text-sm text-gray-700"
-          >
-            {skill}
-          </span>
-        ))}
+  <div
+    className="border border-gray-300 hover:border-indigo-600 p-4 rounded-lg shadow-md bg-white flex max-w-screen-lg"
+    style={{ height: '400px' }}
+  >
+    {/* Left section: Title, Description, Skills */}
+    <div className="flex-1 flex flex-col justify-between w-1/2 pr-4">
+      <div>
+        <h3 className="text-2xl font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600">{description}</p>
+      </div>
+      <div className="mt-4">
+        <h4 className="text-lg font-semibold mb-2">Skills Used:</h4>
+        <div className="flex flex-wrap gap-2">
+          {skills.map((skill, index) => (
+            <span
+              key={index}
+              className="bg-gray-200 py-1 px-2 rounded-full text-sm text-gray-700"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
-    {/* Button for project link */}
-    {website && (
-      <a
-        href={website}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300"
-      >
-        Visit Website
-      </a>
-    )}
+    {/* Right section: Image and Visit Website button */}
+    <div className="flex-shrink-0 flex flex-col justify-center items-center w-1/2 pl-2">
+      <img src={image} alt={title} className="w-56 h-fit rounded-lg mb-4" />
+      {website && (
+        <a
+          href={website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-indigo-600 text-white py-2 px-3 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 mt-4"
+        >
+          Visit Website
+        </a>
+      )}
+    </div>
   </div>
 );
 
@@ -241,12 +250,12 @@ const ProjectSection = () => {
         "Welcome to my digital portfolio. This project took me countless hours to create using JavaScript (React, Threejs), HTML, and CSS. I also used technologies like blender, framer motion, and maximo.",
       image: "projects/portfoliopic.png", // Replace with actual image path
       skills: ["JavaScript", "React", "Threejs", "HTML", "CSS", "Blender", "Framer Motion"],
-      website: "https://www.tylerramanata.com/portfolio", // Example website link
+      website: "https://tramanata.github.io", // Example website link
     },
     {
       title: "Rust Blockchain",
       description:
-        "I am embarking on a new endeavor to develop a blockchain application using Rust programming language. This project aims to leverage Rust's robustness and low-level control to explore decentralized ledger technology. Key objectives include implementing secure transaction protocols, experimenting with consensus algorithms, and exploring the practical applications of smart contracts in decentralized systems.",
+        "Using Rust to develop a blockchain system. Learning to use Smart Contracts and Consensus Algorithms for efficient and secure transfers.",
       image: "projects/comingsoon.jpg", // Replace with actual image path
       skills: ["Rust", "Blockchain", "Smart Contracts", "Consensus Algorithms"],
       website: "google.com", // Example website link
@@ -263,7 +272,7 @@ const ProjectSection = () => {
   ];
 
   const [startIndex, setStartIndex] = useState(0);
-  const maxVisibleCards = 3; // Number of cards visible at a time
+  const maxVisibleCards = 2; // Number of cards visible at a time
 
   const controls = useAnimation();
 
@@ -294,7 +303,25 @@ const ProjectSection = () => {
         }}
       >
         <h2 className="text-5xl font-bold mb-8 text-center">Projects</h2>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex overflow-x-hidden mb-4">
+          <motion.div
+            className="flex transition-all ease-in-out duration-500"
+            style={{ x: controls }}
+          >
+            {projects.slice(startIndex, startIndex + maxVisibleCards).map((project, index) => (
+              <div key={index} className="w-full md:w-1/2 px-2">
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  skills={project.skills}
+                  website={project.website}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+        <div className="flex justify-between items-center mt-4">
           <button
             className={`bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 ${startIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
             onClick={prevProjects}
@@ -309,24 +336,6 @@ const ProjectSection = () => {
           >
             Next
           </button>
-        </div>
-        <div className="flex overflow-x-hidden">
-          <motion.div
-            className="flex transition-all ease-in-out duration-500"
-            style={{ x: controls }}
-          >
-            {projects.slice(startIndex, startIndex + maxVisibleCards).map((project, index) => (
-              <div key={index} className="w-full md:w-1/3 px-2">
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  image={project.image}
-                  skills={project.skills}
-                  website={project.website}
-                />
-              </div>
-            ))}
-          </motion.div>
         </div>
       </motion.div>
     </Section>

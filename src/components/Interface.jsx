@@ -258,7 +258,7 @@ const ProjectSection = () => {
         "Chariot is a Full-Stack, Ride Hailing iOS Mobile Application. This application was created to solve a problem in college organizations where drivers had to constantly look at their phones when people needed rides. This application was created using AWS services, React, Node.js, python, and Java.",
       image: "projects/chariot.png", // Replace with actual image path
       skills: ["AWS", "React", "Node.js", "Python", "Java"],
-      website: "https://www.chariotapp.com", // Example website link
+      website: "https://sites.google.com/view/theappchariot?usp=sharing", // Example website link
     },
     {
       title: "My Digital Portfolio",
@@ -282,7 +282,7 @@ const ProjectSection = () => {
         "First ever coding project created 10th Grade. Used JavaScript to create a basic targeting game using your cursor.",
       image: "projects/frogzilla.png", // Replace with actual image path
       skills: ["JavaScript"],
-      website: "google.com", // Example website link
+      website: "https://sites.google.com/view/frogzilla?usp=sharing", // Example website link
     },
     // Add more projects as needed
   ];

@@ -68,7 +68,7 @@ export const Experience = (props) => {
               transparent
               distort={0.4}
               speed={4}
-              color={"red"}
+              color={"white"}
             />
           </mesh>
         </Float>
@@ -80,31 +80,31 @@ export const Experience = (props) => {
               transparent
               distort={1}
               speed={5}
-              color="yellow"
+              color="white"
             />
           </mesh>
         </Float>
         <Float>
-          <mesh scale={[1.4, 1.4, 1.4]} position={[-3, -1, -11]}>
+          <mesh scale={[1.4, 1.4, 1.4]} position={[10, -1, -11]}>
             <boxGeometry />
             <MeshWobbleMaterial
               opacity={0.8}
               transparent
-              factor={1}
-              speed={5}
-              color={"blue"}
+              factor={8}
+              speed={2}
+              color={"white"}
             />
           </mesh>
         </Float>
         <Float>
-          <mesh scale={[1.4, 1.4, 1.4]} position={[4, -1, -11]}>
+          <mesh scale={[1.4, 1.4, 1.4]} position={[-5, -1, -11]}>
             <ringGeometry />
             <MeshWobbleMaterial
               opacity={0.8}
               transparent
-              factor={1}
+              factor={2}
               speed={5}
-              color={"orange"}
+              color={"white"}
             />
           </mesh>
         </Float>
@@ -116,7 +116,7 @@ export const Experience = (props) => {
               transparent
               factor={6}
               speed={9}
-              color={"green"}
+              color={"white"}
             />
           </mesh>
         </Float>

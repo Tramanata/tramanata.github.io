@@ -2,6 +2,11 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useState } from "react";
 import ReactTypingEffect from 'react-typing-effect';
 import './styles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import emailjs from 'emailjs-com';
+
+
 
 const Section = (props) => {
   const { children } = props;
@@ -47,6 +52,7 @@ const AboutSection = () => {
   ];
   return (
     <Section>
+      <div className="text-container">
       <h1 className="text-5xl italic font-extrabold leading-snug">
             <ReactTypingEffect
                 text={text}
@@ -98,24 +104,8 @@ const AboutSection = () => {
         professional goals, skills, and projects.
 
       </motion.p>
-      <motion.button
-        className={`bg-indigo-600 text-white py-4 px-8 
-      rounded-lg font-bold text-lg mt-16`}
-        initial={{
-          opacity: 0,
-          y: 25,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 2,
-        }}
-      >
-        Contact me
-      </motion.button>
+      
+      </div>
     </Section>
   );
 };
@@ -144,22 +134,8 @@ const skills = [
 ];
 
 const SkillsSection = () => {
-  const resumeButtonClick = () => {
-    const resumePath = "/resume.pdf";
-    window.open(resumePath, '_blank');
-  };
-  const LinkedInButton = () => {
-      window.open("https://www.linkedin.com/in/tylerramanata", "_blank");
-    };
-
   return(
     <Section>
-        <button className="resume-button" onClick={resumeButtonClick}>
-            View Resume
-        </button>
-        <button className="linkedin-button" onClick={LinkedInButton}>
-            View LinkedIn
-        </button>
       <motion.div whileInView={"visible"}>
         <h2 className="text-5xl font-bold">Skills</h2>
         <div className=" mt-8 space-y-4">
@@ -209,42 +185,27 @@ const SkillsSection = () => {
   );
 };
 const ProjectCard = ({ title, description, image, skills, website }) => (
-  <div
-    className="border border-gray-300 hover:border-indigo-600 p-4 rounded-lg shadow-md bg-white flex max-w-screen-lg"
-    style={{ height: '400px' }}
-  >
-    {/* Left section: Title, Description, Skills */}
-    <div className="flex-1 flex flex-col justify-between w-1/2 pr-4">
-      <div>
-        <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+  <div className="project-card">
+    <img src={image} alt={title} />
+    <div className="project-card-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div className="skills-container">
+        {skills.map((skill, index) => (
+          <span key={index} className="skill">{skill}</span>
+        ))}
       </div>
-      <div className="mt-4">
-        <h4 className="text-lg font-semibold mb-2">Skills Used:</h4>
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill, index) => (
-            <span
-              key={index}
-              className="bg-gray-200 py-1 px-2 rounded-full text-sm text-gray-700"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-    {/* Right section: Image and Visit Website button */}
-    <div className="flex-shrink-0 flex flex-col justify-center items-center w-1/2 pl-2">
-      <img src={image} alt={title} className="w-56 h-fit rounded-lg mb-4" />
       {website && (
-        <a
-          href={website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-indigo-600 text-white py-2 px-3 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 mt-4"
-        >
-          Visit Website
-        </a>
+        <div className="button-container">
+          <a
+            href={website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="visit-button"
+          >
+            Visit Website
+          </a>
+        </div>
       )}
     </div>
   </div>
@@ -255,15 +216,23 @@ const ProjectSection = () => {
     {
       title: "Chariot",
       description:
-        "Chariot is a Full-Stack, Ride Hailing iOS Mobile Application. This application was created to solve a problem in college organizations where drivers had to constantly look at their phones when people needed rides. This application was created using AWS services, React, Node.js, python, and Java.",
+        "Chariot is a full-stack ride-hailing iOS app built for college organizations to solve the issue of drivers constantly checking their phones for ride requests. It uses AWS, React, Node.js, Python, and Java.",
       image: "projects/chariot.png", // Replace with actual image path
       skills: ["AWS", "React", "Node.js", "Python", "Java"],
       website: "https://sites.google.com/view/theappchariot?usp=sharing", // Example website link
     },
     {
+      title: "Tanning Timer iOS Mobile App",
+      description:
+        "Coming Soon: Developed an iOS Mobile App that used Weather API and react javascript to hold a timer for the recommended tanning time based on the UV. ",
+      image: "projects/TanningUV.png", // Replace with actual image path
+      skills: ["JavaScript", "React", "WeatherAPI", "Expo"],
+      website: "google.com", // Example website link
+    },
+    {
       title: "My Digital Portfolio",
       description:
-        "Welcome to my digital portfolio. This project took me countless hours to create using JavaScript (React, Threejs), HTML, and CSS. I also used technologies like blender, framer motion, and maximo.",
+        "Welcome to my digital portfolio! This project took countless hours to create using JavaScript (React, Three.js), HTML, and CSS, along with Blender, Framer Motion, and Maximo.",
       image: "projects/portfoliopic.png", // Replace with actual image path
       skills: ["JavaScript", "React", "Threejs", "HTML", "CSS", "Blender", "Framer Motion"],
       website: "https://tramanata.github.io", // Example website link
@@ -290,115 +259,85 @@ const ProjectSection = () => {
   const [startIndex, setStartIndex] = useState(0);
   const maxVisibleCards = 2; // Number of cards visible at a time
 
-  const controls = useAnimation();
-
   const nextProjects = () => {
     if (startIndex + maxVisibleCards < projects.length) {
-      setStartIndex(startIndex + 1);
-      controls.start({ x: `-${(startIndex + 1) * (100 / maxVisibleCards)}%` });
+      setStartIndex(startIndex + maxVisibleCards);
     }
   };
 
   const prevProjects = () => {
     if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-      controls.start({ x: `-${(startIndex - 1) * (100 / maxVisibleCards)}%` });
+      setStartIndex(startIndex - maxVisibleCards);
     }
   };
 
   return (
-    <Section>
-      <motion.div
-        className="w-full overflow-hidden relative"
-        whileInView={"visible"}
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-        }}
-      >
-        <h2 className="text-5xl font-bold mb-8 text-center">Projects</h2>
-        <div className="flex overflow-x-hidden mb-4">
-          <motion.div
-            className="flex transition-all ease-in-out duration-500"
-            style={{ x: controls }}
-          >
-            {projects.slice(startIndex, startIndex + maxVisibleCards).map((project, index) => (
-              <div key={index} className="w-full md:w-1/2 px-2">
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  image={project.image}
-                  skills={project.skills}
-                  website={project.website}
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-        <div className="flex justify-between items-center mt-4">
-          <button
-            className={`bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 ${startIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
-            onClick={prevProjects}
-            disabled={startIndex === 0}
-          >
-            Prev
-          </button>
-          <button
-            className={`bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold text-sm inline-block hover:bg-indigo-700 transition duration-300 ${startIndex + maxVisibleCards >= projects.length ? 'opacity-50 cursor-not-allowed' : ''}`}
-            onClick={nextProjects}
-            disabled={startIndex + maxVisibleCards >= projects.length}
-          >
-            Next
-          </button>
-        </div>
-      </motion.div>
-    </Section>
+    <section className="project-container">
+      <h2 className="page-title">Projects</h2>
+      <div className="project-wrapper">
+        {projects.slice(startIndex, startIndex + maxVisibleCards).map((project, index) => (
+          <ProjectCard
+            key={index}
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            skills={project.skills}
+            website={project.website}
+          />
+        ))}
+      </div>
+      <div className="navigation-buttons">
+        <button onClick={prevProjects} disabled={startIndex === 0}>Prev</button>
+        <button onClick={nextProjects} disabled={startIndex + maxVisibleCards >= projects.length}>Next</button>
+      </div>
+    </section>
   );
 };
 
 const ContactSection = () => {
+  const LinkedInButton = () => {
+    window.open("https://www.linkedin.com/in/tylerramanata", "_blank");
+  };
+
+  const GithubButton = () => {
+    window.open("https://github.com/Tramanata", "_blank");
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_cyefz2f', 'template_j23jtl6', e.target, 'RQzrTL5Y7W5LBqx-s')
+      .then((result) => {
+        alert("Message sent successfully!");
+      }, (error) => {
+        alert("Message sending failed. Please try again.");
+      });
+  };
+
   return (
     <Section>
+      <button className="linkedin-button" onClick={LinkedInButton}>
+        <FontAwesomeIcon icon={faLinkedin} /> {' '}
+        LinkedIn
+      </button>
+      <button className="github-button" onClick={GithubButton}>
+        <FontAwesomeIcon icon={faGithub} /> {' '}
+        Github
+      </button>
+
       <h2 className="text-5xl font-bold">Contact me</h2>
       <div className="mt-8 p-8 rounded-md bg-white w-96 max-w-full">
-        <form>
-          <label for="name" className="font-medium text-gray-900 block mb-1">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-          />
-          <label
-            for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-          />
-          <label
-            for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
-          >
-            Message
-          </label>
-          <textarea
-            name="message"
-            id="message"
-            className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3"
-          />
-          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16 ">
-            Submit
-          </button>
+        <form onSubmit={sendEmail}>
+          <label htmlFor="name" className="font-medium text-gray-900 block mb-1">Name</label>
+          <input type="text" name="name" id="name" className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3" />
+          
+          <label htmlFor="email" className="font-medium text-gray-900 block mb-1 mt-8">Email</label>
+          <input type="email" name="email" id="email" className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3" />
+          
+          <label htmlFor="message" className="font-medium text-gray-900 block mb-1 mt-8">Message</label>
+          <textarea name="message" id="message" className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-3" />
+          
+          <button type="submit" className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-16">Submit</button>
         </form>
       </div>
     </Section>

@@ -1,3 +1,4 @@
+
 .resume-button {
     background-color: #4f46e5; /* indigo-600 */
     color: white;
@@ -21,7 +22,172 @@
     font-size: 1.125rem; /* text-lg */
     margin-top: 4rem; /* mt-16 */
     position: absolute; /* or relative, fixed, etc., based on your needs */
-    top: 38%; /* Change this value to move the button vertically */
-    left: 80%; /* Change this value to move the button horizontally */
+    top: 84%; /* Change this value to move the button vertically */
+    left: 45%; /* Change this value to move the button horizontally */
     transform: translate(-50%, -50%); /* Center the button */
   }
+  .github-button {
+    background-color: #4f46e5; /* indigo-600 */
+    color: white;
+    padding: 1rem 2rem; /* py-4 px-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-weight: bold;
+    font-size: 1.125rem; /* text-lg */
+    margin-top: 4rem; /* mt-16 */
+    position: absolute; /* or relative, fixed, etc., based on your needs */
+    top: 88%; /* Change this value to move the button vertically */
+    left: 45%; /* Change this value to move the button horizontally */
+    transform: translate(-50%, -50%); /* Center the button */
+  }
+
+  /* Background */
+  #tsparticles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it is behind other elements */
+  }
+
+  /* About Section */
+  .text-container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid #4f46e5; /* Border color matching the button */
+    max-width: 600px; /* Maximum width of the card */
+    margin: auto 0 auto 20px; /* Center vertically, align to left with some margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    position: absolute; /* Use absolute positioning */
+    left: 5%; /* Move 20px from the left edge */
+    top: 12%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+}
+
+/* Title Text */
+.text-container h1 {
+    color: #2c2c2c; /* Dark color for title text */
+    font-size: 2.5em; /* Larger font size */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+/* Body Text */
+.text-container p {
+    color: #4f4f4f; /* Gray color for body text */
+    font-size: 1.2em; /* Slightly larger font size */
+    line-height: 1.5; /* Increased line height for readability */
+}
+
+
+
+/* Projects Section */
+.project-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.project-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.project-card {
+  min-width: 300px;
+  max-width: 400px;
+  margin: 0 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-card-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.project-card-content h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.project-card-content p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.skill {
+  background: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  color: #4f46e5;
+}
+
+.button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.visit-button {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.visit-button:hover {
+  background: #3732b8;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.navigation-buttons button {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.navigation-buttons button:hover {
+  background: #3732b8;
+}
+
+.navigation-buttons button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

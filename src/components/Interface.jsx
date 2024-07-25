@@ -222,12 +222,12 @@ const ProjectSection = () => {
       website: "https://sites.google.com/view/theappchariot?usp=sharing", // Example website link
     },
     {
-      title: "Tanning Timer iOS Mobile App",
+      title: "Meal Prep iOS Mobile Application",
       description:
-        "Coming Soon: Developed an iOS Mobile App that used Weather API and react javascript to hold a timer for the recommended tanning time based on the UV. ",
-      image: "projects/TanningUV.png", // Replace with actual image path
-      skills: ["JavaScript", "React", "WeatherAPI", "Expo"],
-      website: "google.com", // Example website link
+        "Using JavaScript, React, Emailjs, and Expo I was able to develop a mobile application for a local Meal Prep Business to host their products.",
+      image: "projects/BCMealPrep.JPG", // Replace with actual image path
+      skills: ["JavaScript", "React", "Email API", "Expo"],
+      website: "https://github.com/Tramanata/BCMealPrep.git", // Example website link
     },
     {
       title: "My Digital Portfolio",

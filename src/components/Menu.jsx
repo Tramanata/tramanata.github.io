@@ -1,11 +1,17 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 export const Menu = (props) => {
-  const { onSectionChange, menuOpened, setMenuOpened } = props;
+  const { menuOpened, setMenuOpened } = props;
+  const navigate = useNavigate();
 
   return (
     <>
       <button
         onClick={() => setMenuOpened(!menuOpened)}
         className="z-20 fixed top-12 right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md"
+        // className="z-20 fixed top-12 right-12 p-3 w-11 h-11 rounded-md"
+        // style={{ backgroundColor: "#2e9f6d" }}
       >
         <div
           className={`bg-white h-0.5 rounded-md w-full transition-all ${
@@ -27,11 +33,28 @@ export const Menu = (props) => {
         className={`z-10 fixed top-0 right-0 bottom-0 bg-white transition-all overflow-hidden flex flex-col
       ${menuOpened ? "w-80" : "w-0"}`}
       >
-        <div className="flex-1 flex items-start justify-center flex-col gap-6 p-8">
-          <MenuButton label="About" onClick={() => onSectionChange(0)} />
-          <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
-          <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
-          <MenuButton label="Contact" onClick={() => onSectionChange(3)} />
+        <div className="flex flex-col items-start justify-center p-8 gap-4">
+          <MenuButton
+            label="Home"
+            onClick={() => {
+              navigate("/");
+              setMenuOpened(false);
+            }}
+          />
+          <MenuButton
+            label="Projects"
+            onClick={() => {
+              navigate("/projects");
+              setMenuOpened(false);
+            }}
+          />
+          <MenuButton
+            label="Experience"
+            onClick={() => {
+              navigate("/experience");
+              setMenuOpened(false);
+            }}
+          />
         </div>
       </div>
     </>

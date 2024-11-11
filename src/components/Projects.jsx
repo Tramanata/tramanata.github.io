@@ -1,34 +1,31 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Import the Menu button
+import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
 
 function Projects() {
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => setMenuOpened((prevState) => !prevState);
+  const navigate = useNavigate();
 
-  // Sample project data (replace with your actual project details)
+  // Updated project data
   const projectData = [
     {
       id: 1,
-      title: "Project 1",
+      title: "Embedded Systems Vehicle",
       imageUrl: "https://via.placeholder.com/300",
-      description: "This is a description of project 1.",
-      skills: ["React", "JavaScript", "CSS"],
+      description:
+        "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
+      skills: ["C", "Microcontrollers"],
+      link: "https://sites.google.com/view/embeddedsystemsrccar/home",
     },
     {
       id: 2,
-      title: "Project 2",
+      title: "Chariot: Ride Share Application",
       imageUrl: "https://via.placeholder.com/300",
-      description: "This is a description of project 2.",
-      skills: ["Python", "Machine Learning", "Pandas"],
+      description: "This is a description of the Chariot project.",
+      skills: ["JavaScript", "React", "Firebase"],
+    //   link: "/chariot", // Route for Chariot
     },
-    {
-      id: 3,
-      title: "Project 3",
-      imageUrl: "https://via.placeholder.com/300",
-      description: "This is a description of project 3.",
-      skills: ["HTML", "CSS", "JavaScript"],
-    },
-    // Add more projects as needed
   ];
 
   return (
@@ -49,12 +46,10 @@ function Projects() {
           color: "#fff",
           zIndex: 1,
           padding: "20px",
-          height: "100%", // Full height of the screen
-          overflowY: "auto", // Enables vertical scrolling
+          height: "100%",
+          overflowY: "auto",
         }}
       >
-
-
         <div style={{ marginTop: "20px" }}>
           {projectData.map((project) => (
             <ProjectBox
@@ -63,6 +58,8 @@ function Projects() {
               imageUrl={project.imageUrl}
               description={project.description}
               skills={project.skills}
+              link={project.link}
+              navigate={navigate}
             />
           ))}
         </div>
@@ -71,11 +68,19 @@ function Projects() {
   );
 }
 
-// ProjectBox Component with more detailed content
-const ProjectBox = ({ title, imageUrl, description, skills }) => {
+// ProjectBox Component with conditional navigation
+const ProjectBox = ({ title, imageUrl, description, skills, link, navigate }) => {
+  const handleProjectClick = () => {
+    if (link.startsWith("http")) {
+      window.open(link, "_blank"); // Opens external links in a new tab
+    } else {
+      navigate(link); // Navigates to internal routes (e.g., "/chariot")
+    }
+  };
+
   return (
     <div
-      onClick={() => alert(`Navigating to ${title}`)}
+      onClick={handleProjectClick}
       style={{
         width: "100%",
         maxWidth: "900px",

@@ -15,6 +15,7 @@ import { loadFull } from "tsparticles";
 import './components/styles.css';
 import Projects from "./components/Projects";
 import ProfessionalExperience from "./components/ProfessionalExperience";
+import Chariot from "./components/Chariot";
 
 function AppContent() {
   const [section, setSection] = useState(0);
@@ -80,6 +81,7 @@ function AppContent() {
         <Route path="/" element={<Interface />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/experience" element={<ProfessionalExperience />} />
+        <Route path="/chariot" element={<Chariot />} />
       </Routes>
     </MotionConfig>
   );

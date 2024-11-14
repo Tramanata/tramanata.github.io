@@ -105,9 +105,9 @@ const AboutSection = () => {
         <br />
         Computer Engineering and minoring in Business
         <br/>
-        Administration. I hope to pursue a career
+        Administration. I am pursuing a career in
         <br/>
-        in software engineering/developing. Feel free to
+        software engineering/developing. Feel free to
         <br/>
         explore my portfolio to learn more about my
         <br/>

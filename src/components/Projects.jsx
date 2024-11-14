@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Import the Menu button
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
+
 import esvehicle from '../assets/pictures/esvehicle.png'
 import comingsoon from '../assets/pictures/comingsoon.png'
 import webscrapcrypto from '../assets/pictures/cryptowebscraper.png'

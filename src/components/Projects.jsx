@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Import the Menu button
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
+import esvehicle from .../public/pictures/esvehicle.png
+import comingsoon from .../public/pictures/comingsoon.png
+import webscrapcrypto from .../public/pictures/cryptowebscraper.png
 
 function Projects() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -12,7 +15,7 @@ function Projects() {
     {
       id: 1,
       title: "Embedded Systems Vehicle",
-      imageUrl: "/pictures/esvehicle.png",
+      imageUrl: "esvehicle",
       description:
         "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
       skills: ["C", "Microcontrollers"],
@@ -21,7 +24,7 @@ function Projects() {
     {
       id: 2,
       title: "Chariot: Ride Share Application",
-      imageUrl: "/pictures/comingsoon.png",
+      imageUrl: "comingsoon",
       description: "This is coming soon",
       skills: ["JavaScript", "React", "Firebase"],
       //link: "/chariot", // Route for Chariot
@@ -29,7 +32,7 @@ function Projects() {
     {
       id: 3,
       title: "Crypto Web Scraper",
-      imageUrl: "/pictures/cryptowebscraper.png",
+      imageUrl: "webscrapcrypto",
       description: "Created Crypto Web Scraper using Playwright and loading data into PostgreSQL database.",
       skills: ["PostgreSQL", "Python", "Playwright"],
       link: "https://github.com/Tramanata/Crypto-Webscraper.git", 

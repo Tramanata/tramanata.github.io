@@ -22,7 +22,7 @@ function Projects() {
       id: 2,
       title: "Chariot: Ride Share Application",
       imageUrl: "./src/pictures/comingsoon.png",
-      description: "This is a description of the Chariot project.",
+      description: "This is coming soon",
       skills: ["JavaScript", "React", "Firebase"],
     //   link: "/chariot", // Route for Chariot
     },

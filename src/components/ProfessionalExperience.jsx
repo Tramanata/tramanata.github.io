@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "./Menu"; // Ensure this path is correct
 import techmor from '../assets/pictures/Techmor.jpg';
 import stratascale from '../assets/pictures/stratascales.jpg';
@@ -9,6 +9,15 @@ function ProfessionalExperience() {
   const toggleMenu = () => {
     setMenuOpened((prevState) => !prevState);
   };
+
+  useEffect(() => {
+  // Resetting the menu state when the component mounts, including on page refresh
+  setMenuOpened(false);
+  // Optionally, you can add any other cleanup or reinitialization logic here if needed
+  return () => {
+    // Cleanup if needed when the component unmounts (optional)
+  };
+}, []);
 
   return (
     <div

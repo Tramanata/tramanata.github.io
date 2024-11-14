@@ -79,8 +79,8 @@ function AppContent() {
       
       <Routes>
         <Route path="/" element={<Interface />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/experience" element={<ProfessionalExperience />} />
+        <Route path="/projects/" element={<Projects />} />
+        <Route path="/experience/" element={<ProfessionalExperience />} />
         <Route path="/chariot" element={<Chariot />} />
       </Routes>
     </MotionConfig>

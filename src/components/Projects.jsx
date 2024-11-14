@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Import the Menu button
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
-import esvehicle from .../public/pictures/esvehicle.png
-import comingsoon from .../public/pictures/comingsoon.png
-import webscrapcrypto from .../public/pictures/cryptowebscraper.png
+import esvehicle from ../public/pictures/esvehicle.png
+import comingsoon from ../public/pictures/comingsoon.png
+import webscrapcrypto from ../public/pictures/cryptowebscraper.png
 
 function Projects() {
   const [menuOpened, setMenuOpened] = useState(false);

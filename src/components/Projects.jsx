@@ -12,7 +12,7 @@ function Projects() {
     {
       id: 1,
       title: "Embedded Systems Vehicle",
-      imageUrl: "./src/pictures/esvehicle.png",
+      imageUrl: "public/pictures/esvehicle.png",
       description:
         "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
       skills: ["C", "Microcontrollers"],
@@ -21,15 +21,15 @@ function Projects() {
     {
       id: 2,
       title: "Chariot: Ride Share Application",
-      imageUrl: "./src/pictures/comingsoon.png",
+      imageUrl: "public/pictures/comingsoon.png",
       description: "This is coming soon",
       skills: ["JavaScript", "React", "Firebase"],
-    //   link: "/chariot", // Route for Chariot
+      //link: "/chariot", // Route for Chariot
     },
     {
       id: 3,
       title: "Crypto Web Scraper",
-      imageUrl: "./src/pictures/cryptowebscraper.png",
+      imageUrl: "public/pictures/cryptowebscraper.png",
       description: "Created Crypto Web Scraper using Playwright and loading data into PostgreSQL database.",
       skills: ["PostgreSQL", "Python", "Playwright"],
       link: "https://github.com/Tramanata/Crypto-Webscraper.git", 

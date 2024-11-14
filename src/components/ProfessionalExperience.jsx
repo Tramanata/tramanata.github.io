@@ -59,7 +59,7 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src = "../assets/pictures/stratascales.jpg" // Replace with real image
+            src = {stratascale} // Replace with real image
             alt="Work 1"
             style={{
               width: "250px", // Image size
@@ -128,7 +128,7 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src="../assets/pictures/Techmor.jpg" // Replace with real image
+            src={techmor} // Replace with real image
             alt="Work 2"
             style={{
               width: "250px", // Image size

@@ -44,14 +44,14 @@ export const Menu = (props) => {
           <MenuButton
             label="Projects"
             onClick={() => {
-              navigate("/projects");
+              navigate("/projects/");
               setMenuOpened(false);
             }}
           />
           <MenuButton
             label="Experience"
             onClick={() => {
-              navigate("/experience");
+              navigate("/experience/");
               setMenuOpened(false);
             }}
           />

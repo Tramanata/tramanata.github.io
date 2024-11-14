@@ -115,7 +115,7 @@ const ProjectBox = ({ title, imageUrl, description, skills, link, navigate }) =>
       {/* Project Image */}
       <img
         src={imageUrl}
-        alt={`${title} thumbnail`}
+        alt={title}
         style={{
           width: "200px", // This is the width of the image container
           height: "150px", // This is the height of the image container

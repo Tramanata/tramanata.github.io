@@ -1,5 +1,11 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+
 export const Menu = (props) => {
-  const { onSectionChange, menuOpened, setMenuOpened } = props;
+  const { menuOpened, setMenuOpened } = props;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -27,11 +33,51 @@ export const Menu = (props) => {
         className={`z-10 fixed top-0 right-0 bottom-0 bg-white transition-all overflow-hidden flex flex-col
       ${menuOpened ? "w-80" : "w-0"}`}
       >
-        <div className="flex-1 flex items-start justify-center flex-col gap-6 p-8">
-          <MenuButton label="About" onClick={() => onSectionChange(0)} />
-          <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
-          <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
-          <MenuButton label="Contact" onClick={() => onSectionChange(3)} />
+        <div className="flex flex-col items-start justify-center p-8 gap-4 flex-grow">
+          <MenuButton
+            label="Home"
+            onClick={() => {
+              navigate("/");
+              setMenuOpened(false);
+            }}
+          />
+          <MenuButton
+            label="Projects"
+            onClick={() => {
+              navigate("/projects");
+              setMenuOpened(false);
+            }}
+          />
+          <MenuButton
+            label="Experience"
+            onClick={() => {
+              navigate("/experience");
+              setMenuOpened(false);
+            }}
+          />
+        </div>
+        
+        <div className="flex flex-col items-start justify-end p-8 gap-4">
+          <a
+            href="https://www.linkedin.com/in/tylerramanata"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xl font-bold cursor-pointer flex items-center gap-2"
+            style={{ color: "#0077B5" }}
+          >
+            <FontAwesomeIcon icon={faLinkedin} className="text-2xl" />
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/Tramanata"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xl font-bold cursor-pointer flex items-center gap-2"
+            style={{ color: "#333" }}
+          >
+            <FontAwesomeIcon icon={faGithub} className="text-2xl" />
+            GitHub
+          </a>
         </div>
       </div>
     </>

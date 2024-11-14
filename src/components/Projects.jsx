@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Import the Menu button
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
+import esvehicle from '../assets/pictures/esvehicle.png'
+import comingsoon from '../assets/pictures/comingsoon.png'
+import webscrapcrypto from '../assets/pictures/cryptowebscraper.png'
 
 function Projects() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -12,7 +15,7 @@ function Projects() {
     {
       id: 1,
       title: "Embedded Systems Vehicle",
-      imageUrl: "public/pictures/esvehicle.png",
+      imageUrl: esvehicle,
       description:
         "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
       skills: ["C", "Microcontrollers"],
@@ -21,15 +24,15 @@ function Projects() {
     {
       id: 2,
       title: "Chariot: Ride Share Application",
-      imageUrl: "public/pictures/comingsoon.png",
-      description: "Coming soon.",
+      imageUrl: comingsoon,
+      description: "This is coming soon",
       skills: ["JavaScript", "React", "Firebase"],
-    //   link: "/chariot", // Route for Chariot
+      //link: "/chariot", // Route for Chariot
     },
     {
       id: 3,
       title: "Crypto Web Scraper",
-      imageUrl: "public/pictures/cryptowebscraper.png",
+      imageUrl: webscrapcrypto,
       description: "Created Crypto Web Scraper using Playwright and loading data into PostgreSQL database.",
       skills: ["PostgreSQL", "Python", "Playwright"],
       link: "https://github.com/Tramanata/Crypto-Webscraper.git", 
@@ -115,7 +118,7 @@ const ProjectBox = ({ title, imageUrl, description, skills, link, navigate }) =>
       {/* Project Image */}
       <img
         src={imageUrl}
-        alt={`${title} thumbnail`}
+        alt={title}
         style={{
           width: "200px", // This is the width of the image container
           height: "150px", // This is the height of the image container

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Ensure this path is correct
-import techmor from '../assets/pictures/Techmor.jpg'
-import stratascale from '../assets/pictures/stratascales.jpg'
+import techmor from '../assets/pictures/Techmor.jpg';
+import stratascale from '../assets/pictures/stratascales.jpg';
 
 function ProfessionalExperience() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -27,8 +27,6 @@ function ProfessionalExperience() {
     >
       {/* Menu Component */}
       <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} toggleMenu={toggleMenu} />
-
-      
 
       {/* Work Experience Sections */}
       <div
@@ -59,8 +57,8 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src = {stratascale} // Replace with real image
-            alt="Work 1"
+            src={stratascale} // Use imported image for stratascale
+            alt="Stratascale Internship"
             style={{
               width: "250px", // Image size
               height: "250px", // Image size
@@ -128,8 +126,8 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src={techmor} // Replace with real image
-            alt="Work 2"
+            src={techmor} // Use imported image for techmor
+            alt="Techmor Internship"
             style={{
               width: "250px", // Image size
               height: "250px", // Image size
@@ -165,7 +163,7 @@ function ProfessionalExperience() {
               using soldering tools for PCB adjustments. I tested the performance of Analog to CAN Bus products 
               with oscilloscopes to analyze electrical signal changes and gain. Additionally, I developed PCB 
               boards using KeyCAD software to create programming modules for burning strain gauge programming and
-               updating outdated boards.
+              updating outdated boards.
             </p>
             <p
               style={{

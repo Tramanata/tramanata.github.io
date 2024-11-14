@@ -12,7 +12,7 @@ function Projects() {
     {
       id: 1,
       title: "Embedded Systems Vehicle",
-      imageUrl: "https://via.placeholder.com/300",
+      imageUrl: "./src/pictures/esvehicle.png",
       description:
         "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
       skills: ["C", "Microcontrollers"],
@@ -21,10 +21,18 @@ function Projects() {
     {
       id: 2,
       title: "Chariot: Ride Share Application",
-      imageUrl: "https://via.placeholder.com/300",
+      imageUrl: "./src/pictures/comingsoon.png",
       description: "This is a description of the Chariot project.",
       skills: ["JavaScript", "React", "Firebase"],
     //   link: "/chariot", // Route for Chariot
+    },
+    {
+      id: 3,
+      title: "Crypto Web Scraper",
+      imageUrl: "./src/pictures/cryptowebscraper.png",
+      description: "Created Crypto Web Scraper using Playwright and loading data into PostgreSQL database.",
+      skills: ["PostgreSQL", "Python", "Playwright"],
+      link: "https://github.com/Tramanata/Crypto-Webscraper.git", 
     },
   ];
 
@@ -109,10 +117,10 @@ const ProjectBox = ({ title, imageUrl, description, skills, link, navigate }) =>
         src={imageUrl}
         alt={`${title} thumbnail`}
         style={{
-          width: "200px",
-          height: "150px",
+          width: "200px", // This is the width of the image container
+          height: "150px", // This is the height of the image container
           borderRadius: "8px",
-          objectFit: "cover",
+          objectFit: "contain", // This makes the image cover the area without stretching
         }}
       />
 

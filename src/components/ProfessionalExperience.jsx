@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Menu } from "./Menu"; // Ensure this path is correct
+import techmor from '../assets/pictures/Techmor.jpg'
+import stratascale from '../assets/pictures/stratascales.jpg'
 
 function ProfessionalExperience() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -57,7 +59,7 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src="./public/pictures/stratascales.jpg" // Replace with real image
+            src = "../assets/pictures/stratascales.jpg" // Replace with real image
             alt="Work 1"
             style={{
               width: "250px", // Image size
@@ -126,7 +128,7 @@ function ProfessionalExperience() {
           }}
         >
           <img
-            src="./public/pictures/Techmor.jpg" // Replace with real image
+            src="../assets/pictures/Techmor.jpg" // Replace with real image
             alt="Work 2"
             style={{
               width: "250px", // Image size

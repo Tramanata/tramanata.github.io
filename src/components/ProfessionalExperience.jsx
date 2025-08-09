@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "./Menu"; // Ensure this path is correct
 import techmor from '../assets/pictures/Techmor.jpg';
 import stratascale from '../assets/pictures/stratascales.jpg';
+import wells from '../assets/pictures/wells.png';
 
 function ProfessionalExperience() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -40,6 +41,80 @@ function ProfessionalExperience() {
           zIndex: 1,
         }}
       >
+        {/* Work Experience Box 0 */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "40px",
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            borderRadius: "10px",
+            padding: "20px",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
+            width: "90%", // Limit the width of each box
+            maxWidth: "900px", // Ensure the boxes don't stretch too wide
+            alignItems: "center", // Vertically center the content inside the box
+            transition: "transform 0.3s ease", // Smooth transition for hover effect
+          }}
+        >
+          <img
+            src={wells} // Use imported image for stratascale
+            alt="Wells Fargo Internship"
+            style={{
+              width: "250px", // Image size
+              height: "250px", // Image size
+              borderRadius: "10px",
+              marginRight: "20px",
+              objectFit: "contain", // Ensure the image fits without zooming
+            }}
+          />
+          <div style={{ flex: 1 }}>
+            <h2
+              style={{
+                fontSize: "26px", // Increase font size for titles
+                color: "#fff",
+                fontWeight: "600", // Make the title bolder
+                letterSpacing: "1px", // Slightly spread out the letters for a polished look
+                textTransform: "uppercase", // Uppercase for added emphasis
+                transition: "color 0.3s ease", // Smooth transition for hover effect
+              }}
+            >
+              Wells Fargo - Software Engineer Intern
+            </h2>
+            <p
+              style={{
+                color: "#fff",
+                fontSize: "18px", // Increase font size for descriptions
+                lineHeight: "1.8",
+                fontWeight: "400", // Normal weight for body text
+                marginTop: "10px",
+              }}
+            >
+              Built a microservice using Retrieval-Augmented Generation (RAG) and semantic search 
+              to enable efficient querying across 55+ million records, improving query relevance 
+              by ~40% and reducing manual data retrieval time by 60% for internal and external applications. 
+              Integrated an agentic AI chatbot leveraging internal LLMs, automating user data validation and 
+              reducing front-office workload by 30%, while improving client self-service success rate by 45% 
+              through enhanced natural language interactions. Contributed to a secure, full-stack web application 
+              (React, JavaScript, Java) that enabled users to seamlessly view and update personal information 
+              through a responsive and intelligent UI, resulting in a 15% reduction in support ticket volume. 
+              Collaborated on full Software Development Life Cycle (SDLC) processes to develop and test internal 
+              banking applications, integrating automation testing with Selenium and streamlining deployment 
+              using CI/CD pipelines via Jenkins and Git for efficient code integration and delivery.
+
+            </p>
+            <p
+              style={{
+                color: "#ddd",
+                fontSize: "16px",
+                marginTop: "15px",
+                fontWeight: "300", // Lighter weight for the duration text
+              }}
+            >
+              <strong>Duration:</strong> Apr 2025 - Aug 2025
+            </p>
+          </div>
+        </div>
         {/* Work Experience Box 1 */}
         <div
           style={{

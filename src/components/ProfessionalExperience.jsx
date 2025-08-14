@@ -90,17 +90,13 @@ function ProfessionalExperience() {
                 marginTop: "10px",
               }}
             >
-              Built a microservice using Retrieval-Augmented Generation (RAG) and semantic search 
-              to enable efficient querying across 55+ million records, improving query relevance 
-              by ~40% and reducing manual data retrieval time by 60% for internal and external applications. 
-              Integrated an agentic AI chatbot leveraging internal LLMs, automating user data validation and 
-              reducing front-office workload by 30%, while improving client self-service success rate by 45% 
-              through enhanced natural language interactions. Contributed to a secure, full-stack web application 
-              (React, JavaScript, Java) that enabled users to seamlessly view and update personal information 
-              through a responsive and intelligent UI, resulting in a 15% reduction in support ticket volume. 
-              Collaborated on full Software Development Life Cycle (SDLC) processes to develop and test internal 
-              banking applications, integrating automation testing with Selenium and streamlining deployment 
-              using CI/CD pipelines via Jenkins and Git for efficient code integration and delivery.
+              Developed a microservice using Retrieval-Augmented Generation (RAG) and semantic search 
+              to optimize queries across 55M+ records, boosting relevance by 40% and cutting manual 
+              retrieval time by 60%. Integrated an AI chatbot with internal LLMs to automate data validation, 
+              reducing front-office workload by 30% and increasing client self-service success by 45%. 
+              Enhanced a secure full-stack web app (React, JavaScript, Java) for seamless user data management, 
+              lowering support tickets by 15%. Collaborated on SDLC, implemented Selenium automation, and streamlined 
+              CI/CD with Jenkins and Git for efficient delivery.
 
             </p>
             <p

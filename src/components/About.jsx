@@ -32,11 +32,24 @@ function About() {
 
         <h2>Overview</h2>
         <p>
-          I'm a Software Engineer at Oracle on the Network Automation team in Oracle Cloud
-          Infrastructure. I build the systems that keep a global network healthy: Temporal workflows
-          that detect and fix incidents across 50+ data centers, and Flink and Kafka pipelines that
-          process over a billion network metrics a day. You can see more on my{" "}
-          <Link to="/experience">experience</Link> page.
+          I love building, running, climbing, staying active, and connecting with people. My favorite thing to
+          do is a morning coffee walk with friends, family, or a good podcast. I love business and
+          building, and one day I'll start my own company, leveraging my engineering and
+          communication skills. Right now I'm researching the senior healthcare insurance space,
+          including Medicare and long-term care. If you want to hear more, reach out!
+        </p>
+
+        <h2>Today</h2>
+        <p>
+          I'm based in Nashville, Tennessee, where I work as a Software Engineer at Oracle on the
+          Network Automation team in Oracle Cloud Infrastructure. I build the systems that keep a
+          global network healthy: Temporal workflows that detect and fix incidents across 50+ data
+          centers, and Flink and Kafka pipelines that process over a billion network metrics a day
+          (more on my <Link to="/experience">experience</Link> page). I'm always interested in the
+          next exciting step in my journey, so if you want to talk FinTech, robotics, startups, or
+          anything else, reach out on{" "}
+          <ExternalLink href="https://www.linkedin.com/in/tylerramanata">LinkedIn</ExternalLink> or
+          check out my code on <ExternalLink href="https://github.com/Tramanata">GitHub</ExternalLink>.
         </p>
 
         <h2>Things I'm Proud Of</h2>
@@ -53,16 +66,22 @@ function About() {
             entirely on the phone to help people with visual or mobility impairments.
           </li>
           <li>I graduated magna cum laude in Computer Engineering from NC State University.</li>
-          <li>I earned the Oracle Cloud Infrastructure Associate certification.</li>
+          <li>The circle of people I've built around me.</li>
         </ul>
 
         <h2>School</h2>
         <p>
-          I studied Computer Engineering at NC State with a minor in Business Administration, and
-          studied abroad at the Technical University of Denmark in Copenhagen, taking courses in
-          machine learning, AI, autonomous marine robotics, and IoT. Outside of class I was an ECE
-          Ambassador, Class VP of Pi Kappa Phi, and a member of the App Development, Machine
-          Learning, and Quantum Computing clubs.
+          I'm currently enrolled in Georgia Tech's Online Master of Science in Computer Science
+          (OMSCS), specializing in Computational Perception and Robotics. I'm excited to dig into the
+          future of physical technology and AI.
+        </p>
+        <p>
+          Before that, I graduated magna cum laude from NC State University in 2026 with a degree in
+          Computer Engineering and a minor in Business Administration. I also studied abroad at the
+          Technical University of Denmark in Copenhagen, taking courses in machine learning, AI,
+          autonomous marine robotics, and IoT. Outside of class I was an ECE Ambassador, Class VP of
+          Pi Kappa Phi, and a member of the App Development, Machine Learning, and Quantum Computing
+          clubs.
         </p>
 
         <h2>What I'm Into</h2>
@@ -72,23 +91,15 @@ function About() {
             and gets built on.
           </li>
           <li>
+            <strong>Robotics</strong> – how machines see and move through the physical world. It's
+            the focus of my master's, and it started with my senior design project and autonomous
+            marine robotics at DTU.
+          </li>
+          <li>
             <strong>Startups</strong> – I'm always brainstorming new ideas, and I plan to start a
             business within the next year.
           </li>
-          <li>
-            <strong>Machine learning</strong> – from vulnerability models at Stratascale to on-device
-            object detection in senior design.
-          </li>
         </ul>
-
-        <h2>Today</h2>
-        <p>
-          I'm based in Nashville, Tennessee, working at Oracle and always interested in the next
-          exciting step in my journey. If you want to talk FinTech, startups, or anything else, reach
-          out on{" "}
-          <ExternalLink href="https://www.linkedin.com/in/tylerramanata">LinkedIn</ExternalLink> or
-          check out my code on <ExternalLink href="https://github.com/Tramanata">GitHub</ExternalLink>.
-        </p>
       </main>
     </div>
   );

@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react'
 // Client-side routes (see App.jsx). GitHub Pages only serves real files, so a
 // direct visit to /about would 404. Copying index.html into each route's
 // folder makes those URLs real pages; 404.html catches anything else.
-const ROUTES = ['about', 'projects', 'experience', 'chariot']
+const ROUTES = ['about', 'projects', 'experience']
 
 const githubPagesRoutes = () => {
   let outDir

@@ -13,7 +13,6 @@ import './components/styles.css';
 import About from "./components/About";
 import Projects from "./components/Projects";
 import ProfessionalExperience from "./components/ProfessionalExperience";
-import Chariot from "./components/Chariot";
 
 function AppContent() {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -65,7 +64,6 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/experience" element={<ProfessionalExperience />} />
-        <Route path="/chariot" element={<Chariot />} />
       </Routes>
     </MotionConfig>
   );

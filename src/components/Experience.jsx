@@ -84,10 +84,6 @@ export const Experience = (props) => {
         }}
       >
         <Office section={section} />
-
-        <group rotation-y={Math.PI / 2} scale={[1,1,1]} position={[1.5,1.7,12.5]}>
-          <Avatar animation="Typing" />
-        </group>
       </motion.group>
 
 

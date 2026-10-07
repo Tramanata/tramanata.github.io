@@ -19,23 +19,9 @@ export function Avatar(props) {
 
 
   const { animations: typingAnimation } = useFBX("/animations/Typing.fbx");
-  const { animations: standingAnimation } = useFBX("/animations/Standing Idle.fbx");
-  const { animations: fallingAnimation } = useFBX("/animations/Falling Idle.fbx");
-  const { animations: runningInPlace } = useFBX("/animations/Running.fbx");
-  const { animations: runningInCircle } = useFBX("/animations/Jog In Circle.fbx");
-  const { animations: fightStance } = useFBX("/animations/Idle.fbx");
-
   typingAnimation[0].name = "Typing";
-  standingAnimation[0].name = "Standing";
-  fallingAnimation[0].name = "Falling";
-  runningInPlace[0].name = "Running";
-  runningInCircle[0].name = "Circle";
-  fightStance[0].name = "FightStance";
 
-  const { actions } = useAnimations(
-    [typingAnimation[0], standingAnimation[0], fallingAnimation[0], runningInPlace[0], runningInCircle[0], fightStance[0]],
-    group
-  );
+  const { actions } = useAnimations([typingAnimation[0]], group);
 
 
   useFrame((state) => {

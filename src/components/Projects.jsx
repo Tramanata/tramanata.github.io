@@ -1,157 +1,94 @@
 import React, { useState } from "react";
-import { Menu } from "./Menu"; // Import the Menu button
-import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
+import { Menu } from "./Menu";
+import "./styles.css";
 
-import esvehicle from '../assets/pictures/esvehicle.png'
-import comingsoon from '../assets/pictures/comingsoon.png'
-import webscrapcrypto from '../assets/pictures/cryptowebscraper.png'
+import esvehicle from "../assets/pictures/esvehicle.png";
+
+// `image` is optional; cards without one render text-only.
+const projects = [
+  {
+    title: "OnDeviceNav",
+    context: "Senior design · NC State",
+    description:
+      "An Android app for turn-by-turn indoor navigation in augmented reality, running entirely on the phone: no floor plans and no internet. It maps the room live with ARCore, detects people and obstacles with a YOLO11 model, and routes around them with A* pathfinding.",
+    tech: ["Java", "Android", "ARCore", "TensorFlow Lite", "YOLO11"],
+    links: [
+      { label: "GitHub", href: "https://github.com/Tramanata/OnDeviceNav" },
+      {
+        label: "Poster",
+        href: "https://drive.google.com/file/d/16b3e3lavmcceDkBZc4czBN0tXCfAw0JP/view?usp=sharing",
+      },
+    ],
+  },
+  {
+    title: "Chariot",
+    context: "iOS app · live on the App Store",
+    description:
+      "A ride-share app I founded and launched on the App Store, now serving 100+ active users. Riders and drivers get matched in real time, with live location, maps, and per-driver ride queues.",
+    tech: ["TypeScript", "React Native", "Expo", "Supabase"],
+    links: [{ label: "App Store", href: "https://apps.apple.com/us/app/ride-chariot/id6760150604" }],
+  },
+  {
+    title: "Embedded Systems Vehicle",
+    context: "ECE 306 · NC State",
+    description:
+      "A microcontroller-driven car programmed in C. It runs preset movement routines, follows a black line using its sensors, and takes commands over IoT serial communication.",
+    tech: ["C", "Microcontrollers"],
+    image: esvehicle,
+    links: [
+      { label: "Project site", href: "https://sites.google.com/view/embeddedsystemsrccar/home" },
+      { label: "GitHub", href: "https://github.com/Tramanata/ECE306-Embedded-System-Vehicle" },
+    ],
+  },
+  {
+    title: "Crypto Web Scraper",
+    context: "Personal project",
+    description:
+      "A Python scraper that uses Playwright to collect cryptocurrency market data from CoinMarketCap and loads it into a PostgreSQL database.",
+    tech: ["Python", "Playwright", "PostgreSQL"],
+    links: [{ label: "GitHub", href: "https://github.com/Tramanata/Crypto-Webscraper" }],
+  },
+];
 
 function Projects() {
   const [menuOpened, setMenuOpened] = useState(false);
-  const toggleMenu = () => setMenuOpened((prevState) => !prevState);
-  const navigate = useNavigate();
-
-  // Updated project data
-  const projectData = [
-    {
-      id: 1,
-      title: "Embedded Systems Vehicle",
-      imageUrl: esvehicle,
-      description:
-        "Developed an embedded systems vehicle that can perform a series of tasks that include: hard-coded movement, black line sensors, and movement due to IoT/Serial Communication",
-      skills: ["C", "Microcontrollers"],
-      link: "https://sites.google.com/view/embeddedsystemsrccar/home",
-    },
-    {
-      id: 2,
-      title: "Chariot: Ride Share Application",
-      imageUrl: comingsoon,
-      description: "This is coming soon",
-      skills: ["JavaScript", "React", "Firebase"],
-      //link: "/chariot", // Route for Chariot
-    },
-    {
-      id: 3,
-      title: "Crypto Web Scraper",
-      imageUrl: webscrapcrypto,
-      description: "Created Crypto Web Scraper using Playwright and loading data into PostgreSQL database.",
-      skills: ["PostgreSQL", "Python", "Playwright"],
-      link: "https://github.com/Tramanata/Crypto-Webscraper.git", 
-    },
-  ];
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        background: "linear-gradient(19deg, #110d31 0%, #3b0a45 50%, #1c2f50 100%)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} toggleMenu={toggleMenu} />
+    <div className="page">
+      <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
 
-      {/* Scrollable Project List Container */}
-      <div
-        style={{
-          position: "relative",
-          color: "#fff",
-          zIndex: 1,
-          padding: "20px",
-          height: "100%",
-          overflowY: "auto",
-        }}
-      >
-        <div style={{ marginTop: "20px" }}>
-          {projectData.map((project) => (
-            <ProjectBox
-              key={project.id}
-              title={project.title}
-              imageUrl={project.imageUrl}
-              description={project.description}
-              skills={project.skills}
-              link={project.link}
-              navigate={navigate}
-            />
+      <main className="page-content">
+        <h1 className="page-title">Projects</h1>
+
+        <div className="card-list">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} {...project} />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
 
-// ProjectBox Component with conditional navigation
-const ProjectBox = ({ title, imageUrl, description, skills, link, navigate }) => {
-  const handleProjectClick = () => {
-    if (link.startsWith("http")) {
-      window.open(link, "_blank"); // Opens external links in a new tab
-    } else {
-      navigate(link); // Navigates to internal routes (e.g., "/chariot")
-    }
-  };
-
-  return (
-    <div
-      onClick={handleProjectClick}
-      style={{
-        width: "100%",
-        maxWidth: "900px",
-        margin: "20px auto",
-        padding: "20px",
-        borderRadius: "12px",
-        background: "rgba(255, 255, 255, 0.1)",
-        color: "#fff",
-        cursor: "pointer",
-        transition: "transform 0.2s, box-shadow 0.2s",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-        display: "flex",
-        gap: "20px",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "scale(1.02)";
-        e.currentTarget.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.5)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-        e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.3)";
-      }}
-    >
-      {/* Project Image */}
-      <img
-        src={imageUrl}
-        alt={title}
-        style={{
-          width: "200px", // This is the width of the image container
-          height: "150px", // This is the height of the image container
-          borderRadius: "8px",
-          objectFit: "contain", // This makes the image cover the area without stretching
-        }}
-      />
-
-      {/* Project Content */}
-      <div style={{ flex: 1 }}>
-        <h2 style={{ fontSize: "1.75em", marginBottom: "10px" }}>{title}</h2>
-        <p style={{ fontSize: "1em", marginBottom: "15px" }}>{description}</p>
-
-        {/* Skills List */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-          {skills.map((skill, index) => (
-            <span
-              key={index}
-              style={{
-                background: "rgba(255, 255, 255, 0.2)",
-                padding: "5px 10px",
-                borderRadius: "8px",
-                fontSize: "0.9em",
-              }}
-            >
-              {skill}
-            </span>
+const ProjectCard = ({ title, context, description, tech, image, links }) => (
+  <article className="card project-card">
+    <div className="project-body">
+      <p className="project-context">{context}</p>
+      <h2 className="card-title">{title}</h2>
+      <p className="project-description">{description}</p>
+      <p className="card-tech">{tech.join(" · ")}</p>
+      {links.length > 0 && (
+        <p className="project-links">
+          {links.map((link) => (
+            <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
           ))}
-        </div>
-      </div>
+        </p>
+      )}
     </div>
-  );
-};
+    {image && <img className="project-image" src={image} alt={title} />}
+  </article>
+);
 
 export default Projects;

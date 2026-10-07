@@ -1,121 +1,92 @@
-import { motion, useAnimation } from "framer-motion";
-import React, { useState } from "react";
-import ReactTypingEffect from 'react-typing-effect';
-import './styles.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import emailjs from 'emailjs-com';
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import "./styles.css";
 
+const TITLE = "Tyler Ramanata";
+const BIO =
+  "I'm a Software Engineer at Oracle on the Network Automation team. I studied Computer Engineering at NC State University and have a deep interest in FinTech and startups. Always interested in the next exciting step in my journey!";
 
+const TYPE_SPEED_MS = 45;
+const BIO_TYPE_SPEED_MS = 18;
+const PAUSE_AFTER_TITLE_MS = 400;
 
-const Section = (props) => {
-  const { children } = props;
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Types out each string in order, one after the other. Returns how many
+// characters of each string are currently visible.
+const useTypewriter = (strings, speeds, startDelay) => {
+  const [counts, setCounts] = useState(() =>
+    prefersReducedMotion() ? strings.map((s) => s.length) : strings.map(() => 0)
+  );
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    let timer;
+    let index = 0;
+    let chars = 0;
+
+    const tick = () => {
+      if (index >= strings.length) return;
+      chars += 1;
+      const typingIndex = index;
+      const typedChars = chars;
+      setCounts((prev) => prev.map((c, i) => (i === typingIndex ? typedChars : c)));
+
+      if (chars < strings[index].length) {
+        timer = setTimeout(tick, speeds[index]);
+      } else {
+        index += 1;
+        chars = 0;
+        timer = setTimeout(tick, PAUSE_AFTER_TITLE_MS);
+      }
+    };
+
+    timer = setTimeout(tick, startDelay);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return counts;
+};
+
+// Renders the full text invisibly to reserve its space, with the typed portion
+// layered on top, so the card never changes size while typing.
+const TypedText = ({ text, count, showCaret }) => (
+  <span className="typed">
+    <span className="typed-ghost" aria-hidden="true">
+      {text}
+    </span>
+    <span className="typed-live" aria-hidden="true">
+      {text.slice(0, count)}
+      {showCaret && <span className="typed-caret" />}
+    </span>
+    <span className="sr-only">{text}</span>
+  </span>
+);
+
+export const Interface = () => {
+  const [titleCount, bioCount] = useTypewriter(
+    [TITLE, BIO],
+    [TYPE_SPEED_MS, BIO_TYPE_SPEED_MS],
+    900
+  );
+  const typingTitle = titleCount < TITLE.length;
 
   return (
     <motion.section
-      className={`
-  h-screen w-screen reen p-8 max-w-screen-2xl mx-auto
-  flex flex-col items-start justify-center
-  `}
-      initial={{
-        opacity: 0,
-        y: 50,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 1,
-          delay: 0.6,
-        },
-      }}
+      className="hero-card"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
     >
-      {children}
+      <h1 className="hero-title">
+        <TypedText text={TITLE} count={titleCount} showCaret={typingTitle} />
+      </h1>
+      <p className="hero-bio">
+        <TypedText text={BIO} count={bioCount} showCaret={!typingTitle} />
+      </p>
     </motion.section>
-  );
-};
-
-export const Interface = () => {
-  return (
-    <div className="flex flex-col items-center w-screen">
-      <AboutSection />
-
-    </div>
-  );
-};
-
-const AboutSection = () => {
-  const text = [
-    "Tyler Ramanata's\nDigital Portfolio"
-  ];
-  return (
-    <Section>
-       {/* <img
-          src="./projects/Headshot.png" // Ensure correct path to Headshot.png
-          alt="Tyler's Headshot"
-          style={{
-            width: "200px",
-            height: "200px",
-            borderRadius: "50%", // Makes the image circular
-            marginBottom: "400px",
-            marginLeft: "175px",
-            border: "4px solid #fff", // Optional border for styling
-          }}
-        /> */}
-      <div className="text-container" style={{ marginTop: '200px' }}>
-      <h1 className="text-5xl italic font-extrabold leading-snug">
-            <ReactTypingEffect
-                text={text}
-                speed={100}
-                eraseSpeed={100}
-                eraseDelay={2000}
-                typingDelay={500}
-                cursor="|"
-                displayTextRenderer={(text, i) => {
-                    return (
-                        <span>
-                            {text.split('\n').map((item, index) => (
-                                <React.Fragment key={index}>
-                                    {item}
-                                    {index < text.split('\n').length - 1 && <br />}
-                                </React.Fragment>
-                            ))}
-                        </span>
-                    );
-                }}
-                
-            />
-        </h1>
-      <motion.p
-        className="text-lg text-gray-600 mt-4"
-        initial={{
-          opacity: 0,
-          y: 25,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 1,
-          delay: 1.5,
-        }}
-      >
-        I am a student at NC State University majoring in
-        <br />
-        Computer Engineering and minoring in Business
-        <br/>
-        Administration. I am pursuing a career in
-        <br/>
-        software engineering/developing. Feel free to
-        <br/>
-        explore my portfolio to learn more about my
-        <br/>
-        professional goals, skills, and projects.
-
-      </motion.p>
-      
-      </div>
-    </Section>
   );
 };

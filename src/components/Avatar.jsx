@@ -15,27 +15,13 @@ export function Avatar(props) {
     wireframe: false,
   });
   const group = useRef();
-  const { nodes, materials } = useGLTF("models/667dba0aa357b441c20c6776.glb");
+  const { nodes, materials } = useGLTF("/models/667dba0aa357b441c20c6776.glb");
 
 
-  const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
-  const { animations: standingAnimation } = useFBX("animations/Standing Idle.fbx");
-  const { animations: fallingAnimation } = useFBX("animations/Falling Idle.fbx");
-  const { animations: runningInPlace } = useFBX("animations/Running.fbx");
-  const { animations: runningInCircle } = useFBX("animations/Jog In Circle.fbx");
-  const { animations: fightStance } = useFBX("animations/Idle.fbx");
-
+  const { animations: typingAnimation } = useFBX("/animations/Typing.fbx");
   typingAnimation[0].name = "Typing";
-  standingAnimation[0].name = "Standing";
-  fallingAnimation[0].name = "Falling";
-  runningInPlace[0].name = "Running";
-  runningInCircle[0].name = "Circle";
-  fightStance[0].name = "FightStance";
 
-  const { actions } = useAnimations(
-    [typingAnimation[0], standingAnimation[0], fallingAnimation[0], runningInPlace[0], runningInCircle[0], fightStance[0]],
-    group
-  );
+  const { actions } = useAnimations([typingAnimation[0]], group);
 
 
   useFrame((state) => {
@@ -51,7 +37,7 @@ export function Avatar(props) {
   useEffect(() => {
     actions[animation].reset().fadeIn(0.5).play();
     return () => {
-      actions[animation].reset().fadeOut(0.5);
+      actions[animation]?.reset().fadeOut(0.5);
     };
   }, [animation]);
 
@@ -127,4 +113,4 @@ export function Avatar(props) {
   );
 }
 
-useGLTF.preload("models/667dba0aa357b441c20c6776.glb");
+useGLTF.preload("/models/667dba0aa357b441c20c6776.glb");

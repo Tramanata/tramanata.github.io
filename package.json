@@ -28,7 +28,7 @@
     "react-tsparticles": "^2.12.2",
     "react-typing-effect": "^2.0.5",
     "three": "0.146.0",
-    "tsparticles": "^3.5.0"
+    "tsparticles": "^2.12.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

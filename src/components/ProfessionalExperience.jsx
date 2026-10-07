@@ -1,256 +1,92 @@
 import React, { useState } from "react";
-import { Menu } from "./Menu"; // Ensure this path is correct
-import techmor from '../assets/pictures/Techmor.jpg';
-import stratascale from '../assets/pictures/stratascales.jpg';
-import wells from '../assets/pictures/wells.png';
+import { Menu } from "./Menu";
+import "./styles.css";
+
+const jobs = [
+  {
+    company: "Oracle",
+    role: "Software Engineer · Oracle Cloud Infrastructure",
+    location: "Nashville, TN",
+    dates: "",
+    highlights: [
+      "Designed Temporal workflows in Java that automate anomaly detection and incident remediation across 50+ Oracle data centers, using idempotent activities and exponential-backoff retries to recover safely from partial failures.",
+      "Built and maintain Apache Flink and Kafka stream processing pipelines on the Network Health Monitoring team, handling over 1 billion networking metrics a day.",
+      "Orchestrated high-availability deployments to 50+ Oracle regions, dynamically scaling Kubernetes nodes and cluster pools to match compute demand.",
+    ],
+    tech: ["Java", "Temporal", "Apache Flink", "Apache Kafka", "Kubernetes"],
+  },
+  {
+    company: "Wells Fargo",
+    role: "Software Engineering Intern",
+    location: "Charlotte, NC",
+    dates: "Apr 2025 – Aug 2025",
+    highlights: [
+      "Delivered a client-facing agentic AI chatbot with React, Java, and Google ADK, speeding up responses and improving self-service across 10,000+ client requests.",
+      "Integrated internal AI tools with semantic search APIs for faster retrieval of financial client data, cutting manual query resolution for support teams by 20%.",
+      "Automated CI/CD pipelines with GitHub Actions and OpenShift, enabling more frequent releases without downtime.",
+    ],
+    tech: ["React", "JavaScript", "Java", "Google ADK", "GitHub Actions", "OpenShift"],
+  },
+  {
+    company: "Stratascale",
+    role: "Software Engineer Intern",
+    location: "Charlotte, NC",
+    dates: "Apr 2024 – Aug 2024",
+    highlights: [
+      "Built an ETL pipeline on AWS (Glue, S3, DynamoDB, Aurora, CloudWatch) with SQL and Python, processing 50M+ records.",
+      "Transformed large datasets with PySpark and Pandas for efficient storage and analysis.",
+      "Developed a scikit-learn logistic regression model that classifies high- vs. low-priority vulnerabilities for SOC analysts.",
+    ],
+    tech: ["Python", "AWS", "PySpark", "Pandas", "scikit-learn", "SQL"],
+  },
+  {
+    company: "Techmor",
+    role: "Computer Engineer Intern",
+    location: "",
+    dates: "Apr 2023 – Aug 2023",
+    highlights: [
+      "Built LabVIEW calibration tools to test analog-to-CAN bus, analog-to-digital, and multi-channel products.",
+      "Tested CAN bus products with oscilloscopes to analyze signal changes and gain, and repaired faulty boards by soldering.",
+      "Designed PCBs in KiCad for strain gauge programming modules and to replace outdated boards.",
+    ],
+    tech: ["LabVIEW", "C", "KiCad", "PCB design"],
+  },
+];
 
 function ProfessionalExperience() {
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpened((prevState) => !prevState);
-  };
-
   return (
-    <div
-      style={{
-        height: "100vh", // Make the container fit the viewport height
-        background: "linear-gradient(19deg, #110d31 0%, #3b0a45 50%, #1c2f50 100%)",
-        position: "relative",
-        overflow: "auto", // Enable scrolling if content exceeds viewport
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center", // Horizontally center the content
-        justifyContent: "flex-start", // Align from the top but allow for vertical centering
-        padding: "20px",
-        fontFamily: "'Poppins', sans-serif", // Use Poppins font family for a modern look
-      }}
-    >
-      {/* Menu Component */}
-      <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} toggleMenu={toggleMenu} />
+    <div className="page">
+      <Menu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
 
-      {/* Work Experience Sections */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column", // Stack the boxes vertically
-          alignItems: "center", // Horizontally center the boxes
-          marginTop: "100px", // Space above the boxes
-          width: "100%",
-          maxWidth: "1000px", // Limit the max width of the section
-          zIndex: 1,
-        }}
-      >
-        {/* Work Experience Box 0 */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "40px",
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "10px",
-            padding: "20px",
-            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
-            width: "90%", // Limit the width of each box
-            maxWidth: "900px", // Ensure the boxes don't stretch too wide
-            alignItems: "center", // Vertically center the content inside the box
-            transition: "transform 0.3s ease", // Smooth transition for hover effect
-          }}
-        >
-          <img
-            src={wells} // Use imported image for stratascale
-            alt="Wells Fargo Internship"
-            style={{
-              width: "250px", // Image size
-              height: "250px", // Image size
-              borderRadius: "10px",
-              marginRight: "20px",
-              objectFit: "contain", // Ensure the image fits without zooming
-            }}
-          />
-          <div style={{ flex: 1 }}>
-            <h2
-              style={{
-                fontSize: "26px", // Increase font size for titles
-                color: "#fff",
-                fontWeight: "600", // Make the title bolder
-                letterSpacing: "1px", // Slightly spread out the letters for a polished look
-                textTransform: "uppercase", // Uppercase for added emphasis
-                transition: "color 0.3s ease", // Smooth transition for hover effect
-              }}
-            >
-              Wells Fargo - Software Engineer Intern
-            </h2>
-            <p
-              style={{
-                color: "#fff",
-                fontSize: "18px", // Increase font size for descriptions
-                lineHeight: "1.8",
-                fontWeight: "400", // Normal weight for body text
-                marginTop: "10px",
-              }}
-            >
-              Developed a microservice using Retrieval-Augmented Generation (RAG) and semantic search 
-              to optimize queries across 55M+ records, boosting relevance by 40% and cutting manual 
-              retrieval time by 60%. Integrated an AI chatbot with internal LLMs to automate data validation, 
-              reducing front-office workload by 30% and increasing client self-service success by 45%. 
-              Enhanced a secure full-stack web app (React, JavaScript, Java) for seamless user data management, 
-              lowering support tickets by 15%. Collaborated on SDLC, implemented Selenium automation, and streamlined 
-              CI/CD with Jenkins and Git for efficient delivery.
+      <main className="page-content">
+        <h1 className="page-title">Experience</h1>
 
-            </p>
-            <p
-              style={{
-                color: "#ddd",
-                fontSize: "16px",
-                marginTop: "15px",
-                fontWeight: "300", // Lighter weight for the duration text
-              }}
-            >
-              <strong>Duration:</strong> Apr 2025 - Aug 2025
-            </p>
-          </div>
+        <div className="card-list">
+          {jobs.map((job) => (
+            <JobCard key={job.company} {...job} />
+          ))}
         </div>
-        {/* Work Experience Box 1 */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "40px",
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "10px",
-            padding: "20px",
-            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
-            width: "90%", // Limit the width of each box
-            maxWidth: "900px", // Ensure the boxes don't stretch too wide
-            alignItems: "center", // Vertically center the content inside the box
-            transition: "transform 0.3s ease", // Smooth transition for hover effect
-          }}
-        >
-          <img
-            src={stratascale} // Use imported image for stratascale
-            alt="Stratascale Internship"
-            style={{
-              width: "250px", // Image size
-              height: "250px", // Image size
-              borderRadius: "10px",
-              marginRight: "20px",
-              objectFit: "contain", // Ensure the image fits without zooming
-            }}
-          />
-          <div style={{ flex: 1 }}>
-            <h2
-              style={{
-                fontSize: "26px", // Increase font size for titles
-                color: "#fff",
-                fontWeight: "600", // Make the title bolder
-                letterSpacing: "1px", // Slightly spread out the letters for a polished look
-                textTransform: "uppercase", // Uppercase for added emphasis
-                transition: "color 0.3s ease", // Smooth transition for hover effect
-              }}
-            >
-              Stratascale - Software Engineer Intern
-            </h2>
-            <p
-              style={{
-                color: "#fff",
-                fontSize: "18px", // Increase font size for descriptions
-                lineHeight: "1.8",
-                fontWeight: "400", // Normal weight for body text
-                marginTop: "10px",
-              }}
-            >
-              I participated in a Python-based development project with a team of 10+ engineers, focusing on 
-              creating and implementing an ETL process using AWS services to improve database security for 
-              Fortune 1000 assets. Additionally, I developed a Machine Learning recommendation system using 
-              logistic regression to assist analysts in diagnosing vulnerabilities for over 100 clients. 
-              Throughout this experience, I gained expertise in Scrum methodologies and worked with technologies 
-              such as AWS (S3, Lambdas, Glue, DynamoDB), Python, Apache Spark, Git, and Jira.
-            </p>
-            <p
-              style={{
-                color: "#ddd",
-                fontSize: "16px",
-                marginTop: "15px",
-                fontWeight: "300", // Lighter weight for the duration text
-              }}
-            >
-              <strong>Duration:</strong> Apr 2024 - Aug 2024
-            </p>
-          </div>
-        </div>
-
-        {/* Work Experience Box 2 */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "40px",
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "10px",
-            padding: "20px",
-            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.5)",
-            width: "90%", // Limit the width of each box
-            maxWidth: "900px", // Ensure the boxes don't stretch too wide
-            alignItems: "center", // Vertically center the content inside the box
-            transition: "transform 0.3s ease", // Smooth transition for hover effect
-          }}
-        >
-          <img
-            src={techmor} // Use imported image for techmor
-            alt="Techmor Internship"
-            style={{
-              width: "250px", // Image size
-              height: "250px", // Image size
-              borderRadius: "10px",
-              marginRight: "20px",
-              objectFit: "contain", // Ensure the image fits without zooming
-            }}
-          />
-          <div style={{ flex: 1 }}>
-            <h2
-              style={{
-                fontSize: "26px", // Increase font size for titles
-                color: "#fff",
-                fontWeight: "600", // Make the title bolder
-                letterSpacing: "1px", // Slightly spread out the letters for a polished look
-                textTransform: "uppercase", // Uppercase for added emphasis
-                transition: "color 0.3s ease", // Smooth transition for hover effect
-              }}
-            >
-              Techmor - Computer Engineer Intern
-            </h2>
-            <p
-              style={{
-                color: "#fff",
-                fontSize: "18px", // Increase font size for descriptions
-                lineHeight: "1.8",
-                fontWeight: "400", // Normal weight for body text
-                marginTop: "10px",
-              }}
-            >
-              I utilized LabView software (C Program) to develop calibration tools for testing the functionality 
-              of Analog to CAN Bus, Analog to Digital, and multi-channel products, and debugged faulty systems 
-              using soldering tools for PCB adjustments. I tested the performance of Analog to CAN Bus products 
-              with oscilloscopes to analyze electrical signal changes and gain. Additionally, I developed PCB 
-              boards using KeyCAD software to create programming modules for burning strain gauge programming and
-              updating outdated boards.
-            </p>
-            <p
-              style={{
-                color: "#ddd",
-                fontSize: "16px",
-                marginTop: "15px",
-                fontWeight: "300", // Lighter weight for the duration text
-              }}
-            >
-              <strong>Duration:</strong> Apr 2023 - Aug 2023
-            </p>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }
+
+const JobCard = ({ company, role, location, dates, highlights, tech }) => (
+  <article className="card">
+    <div className="job-header">
+      <h2 className="card-title">{company}</h2>
+      {dates && <p className="job-dates">{dates}</p>}
+    </div>
+    <p className="job-role">{[role, location].filter(Boolean).join(" · ")}</p>
+    <ul className="job-highlights">
+      {highlights.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+    <p className="card-tech">{tech.join(" · ")}</p>
+  </article>
+);
 
 export default ProfessionalExperience;

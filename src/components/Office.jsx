@@ -12,8 +12,8 @@ import * as THREE from "three";
 
 export function Office(props) {
   const { section } = props;
-  const { nodes, materials } = useGLTF("models/scene.gltf");
-  const texture = useTexture("textures/baked.jpg");
+  const { nodes, materials } = useGLTF("/models/scene.gltf");
+  const texture = useTexture("/textures/baked.jpg");
   texture.flipY = false;
   texture.encoding = THREE.sRGBEncoding;
 
@@ -338,4 +338,4 @@ export function Office(props) {
   );
 }
 
-useGLTF.preload("models/scene.gltf");
+useGLTF.preload("/models/scene.gltf");

@@ -15,15 +15,15 @@ export function Avatar(props) {
     wireframe: false,
   });
   const group = useRef();
-  const { nodes, materials } = useGLTF("models/667dba0aa357b441c20c6776.glb");
+  const { nodes, materials } = useGLTF("/models/667dba0aa357b441c20c6776.glb");
 
 
-  const { animations: typingAnimation } = useFBX("animations/Typing.fbx");
-  const { animations: standingAnimation } = useFBX("animations/Standing Idle.fbx");
-  const { animations: fallingAnimation } = useFBX("animations/Falling Idle.fbx");
-  const { animations: runningInPlace } = useFBX("animations/Running.fbx");
-  const { animations: runningInCircle } = useFBX("animations/Jog In Circle.fbx");
-  const { animations: fightStance } = useFBX("animations/Idle.fbx");
+  const { animations: typingAnimation } = useFBX("/animations/Typing.fbx");
+  const { animations: standingAnimation } = useFBX("/animations/Standing Idle.fbx");
+  const { animations: fallingAnimation } = useFBX("/animations/Falling Idle.fbx");
+  const { animations: runningInPlace } = useFBX("/animations/Running.fbx");
+  const { animations: runningInCircle } = useFBX("/animations/Jog In Circle.fbx");
+  const { animations: fightStance } = useFBX("/animations/Idle.fbx");
 
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";
@@ -127,4 +127,4 @@ export function Avatar(props) {
   );
 }
 
-useGLTF.preload("models/667dba0aa357b441c20c6776.glb");
+useGLTF.preload("/models/667dba0aa357b441c20c6776.glb");
